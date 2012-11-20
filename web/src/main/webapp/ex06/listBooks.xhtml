@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>List of the books</title>
+</h:head>
+<h:body>
+    <h1>List of the books</h1>
+    <hr/>
+    
+    <p:dataTable value="#{myBookController06.bookList}" var="bk" border="1" lazy="false"
+                 paginator="true" rows="10"
+                 sortFunction="#{myBookController06.sort}"
+                 sortBy="#{bk.title}">
+        <p:column headerText="ISBN">
+            <h:outputText value="#{bk.isbn}"/>
+        </p:column>
+
+        <p:column filterBy="#{bk.title}" filterMatchMode="contains" headerText="Title" sortBy="#{bk.title}">
+            <h:outputText value="#{bk.title}"/>
+        </p:column>
+
+        <p:column headerText="Price">
+            <h:outputText value="#{bk.price}"/>
+        </p:column>
+
+        <p:column headerText="# Pages" sortBy="#{bk.nbOfPage}">
+            <h:outputText value="#{bk.nbOfPage}"/>
+        </p:column>
+
+    </p:dataTable>
+
+    <hr/>
+
+    <h:link outcome="newBook.xhtml" value="Create a new book"/>
+</h:body>
+</html>
